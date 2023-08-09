@@ -1,0 +1,643 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Issuer Server",
+    "description": "API for issuser server"
+  },
+  "tags": [
+    {
+      "name": "backup",
+      "description": "API for upload and get data encrypt"
+    },
+    {
+      "name": "holder",
+      "description": "API for upload and get private key encrypt"
+    },
+    {
+      "name": "data",
+      "description": "API for get backup data"
+    },
+    {
+      "name": "storage",
+      "description": "Storage"
+    },
+    {
+      "name": "auth-backup",
+      "description": "API for upload and get auth list encrypt"
+    },
+    {
+      "name": "auth-claim",
+      "description": "API for get backup auth list claim"
+    }
+  ],
+  "paths": {
+    "/api/v1/backup": {
+      "post": {
+        "tags": [
+          "backup"
+        ],
+        "summary": "API for post data encrypt",
+        "description": "API for post data encrypt",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ZIDEN",
+                "EUENO"
+              ],
+              "default": "ZIDEN"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Your holderId, issuerId, claimId, data and nonce",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DataEncrypt"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/DataEncrypt"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/DataEncrypt"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "API response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "backup"
+        ],
+        "summary": "API for get data encrypt by holderId, issuerId or",
+        "description": "API for get data encrypt",
+        "parameters": [
+          {
+            "name": "holderId",
+            "in": "query",
+            "description": "holder id",
+            "schema": {
+              "type": "string",
+              "example": "123"
+            }
+          },
+          {
+            "name": "issuerId",
+            "in": "query",
+            "description": "holder id",
+            "schema": {
+              "type": "string",
+              "example": "123"
+            }
+          },
+          {
+            "name": "claimId",
+            "in": "query",
+            "description": "holder id",
+            "schema": {
+              "type": "string",
+              "example": "123"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "API response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/holder": {
+      "post": {
+        "tags": [
+          "holder"
+        ],
+        "summary": "API for post data encrypt",
+        "description": "API for post data encrypt",
+        "requestBody": {
+          "description": "Your holderId, dek",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Holder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "API response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "holder"
+        ],
+        "summary": "API for post data encrypt",
+        "description": "API for post data encrypt",
+        "requestBody": {
+          "description": "Your holderId, dek",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Holder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "API response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "holder"
+        ],
+        "summary": "API for get data encrypt by holderId, issuerId or",
+        "description": "API for post data encrypt",
+        "parameters": [
+          {
+            "name": "holderId",
+            "in": "query",
+            "description": "holder id",
+            "schema": {
+              "type": "string",
+              "example": "123"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "API response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/data/{id}": {
+      "get": {
+        "tags": [
+          "data"
+        ],
+        "summary": "Get data on ZIDEN BACKUP SERVER",
+        "description": "Get data on ZIDEN BACKUP SERVER",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of data",
+            "schema": {
+              "type": "string",
+              "example": "id123"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "API response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/storage": {
+      "post": {
+        "tags": [
+          "storage"
+        ],
+        "summary": "Create new storage",
+        "description": "Create new storage",
+        "requestBody": {
+          "description": "Create new storage",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Storage"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "API response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "storage"
+        ],
+        "summary": "get all storage",
+        "description": "get all storage",
+        "responses": {
+          "default": {
+            "description": "API response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/storage/{id}": {
+      "get": {
+        "tags": [
+          "storage"
+        ],
+        "summary": "get storage by id",
+        "description": "get storage by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "storageId",
+            "schema": {
+              "type": "string",
+              "example": "id123"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "API response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth-backup": {
+      "post": {
+        "tags": ["auth-backup"],
+        "summary": "API for post data auth list encrypt",
+        "requestBody": {
+          "description": "Your holderId, data and nonce",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "holderId": {
+                    "type": "string",
+                    "description": "HolderId",
+                    "example": "123"
+                  },
+                  "data": {
+                    "type": "string",
+                    "description": "Your auth list encrypted by your DEK",
+                    "example": "60b03f85264f804a6f532e82d1dc97c8925d87c61a52563c90f0c2a612f32425a045a6f118956cafaf48deb8dfb8a7790207e01e412acf58a4906089a18bbee4b7f0513a10df4d86e4ec24a90932346582de5d80dd7f360b23dc0d6279fb440515f4f1ba1977d939707fa24b1c897cd2"
+                  },
+                  "nonce": {
+                    "type": "string",
+                    "description": "nonce",
+                    "example": "90026a9dde6b4f4e53e98031fac38fb642b6b753aa766756"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "API response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth-backup/{holderId}": {
+      "get": {
+        "tags": ["auth-backup"],
+        "summary": "API for get auth claim encrypted by holderId",
+        "description": "API for get data",
+        "parameters": [
+          {
+            "name": "holderId",
+            "in": "path",
+            "description": "holder id",
+            "schema": {
+              "type": "string",
+              "example": "123"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "API response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth-claim/{id}": {
+      "get": {
+        "tags": [
+          "auth-claim"
+        ],
+        "summary": "Get data on ZIDEN BACKUP SERVER",
+        "description": "Get data on ZIDEN BACKUP SERVER",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of data",
+            "schema": {
+              "type": "string",
+              "example": "id123"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "API response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "APIResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "username01"
+          },
+          "password": {
+            "type": "string",
+            "example": "password01"
+          }
+        }
+      },
+      "DataEncrypt": {
+        "type": "object",
+        "properties": {
+          "holderId": {
+            "type": "string",
+            "description": "Holder",
+            "example": "123"
+          },
+          "issuerId": {
+            "type": "string",
+            "description": "iusser",
+            "example": "123"
+          },
+          "claimId": {
+            "type": "string",
+            "description": "claim",
+            "example": "123"
+          },
+          "data": {
+            "type": "string",
+            "description": "Your data encrypted by your DEK",
+            "example": "60b03f85264f804a6f532e82d1dc97c8925d87c61a52563c90f0c2a612f32425a045a6f118956cafaf48deb8dfb8a7790207e01e412acf58a4906089a18bbee4b7f0513a10df4d86e4ec24a90932346582de5d80dd7f360b23dc0d6279fb440515f4f1ba1977d939707fa24b1c897cd2"
+          },
+          "nonce": {
+            "type": "string",
+            "description": "nonce",
+            "example": "90026a9dde6b4f4e53e98031fac38fb642b6b753aa766756"
+          }
+        }
+      },
+      "Holder": {
+        "type": "object",
+        "properties": {
+          "holderId": {
+            "type": "string",
+            "description": "Holder id",
+            "example": "123"
+          },
+          "dek": {
+            "type": "string",
+            "description": "your DEK encrypted by your publickey",
+            "example": "60b03f85264f804a6f532e82d1dc97c8925d87c61a52563c90f0c2a612f32425a045a6f118956cafaf48deb8dfb8a7790207e01e412acf58a4906089a18bbee4b7f0513a10df4d86e4ec24a90932346582de5d80dd7f360b23dc0d6279fb440515f4f1ba1977d939707fa24b1c897cd2"
+          }
+        }
+      },
+      "Storage": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "name"
+          },
+          "description": {
+            "type": "string",
+            "example": "description"
+          },
+          "endpointUrl": {
+            "type": "string",
+            "example": "endpointUrl"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

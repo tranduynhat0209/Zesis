@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+  backup-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./src:/home/node/app/src
+      - ./logs:/home/node/app/logs
+    container_name: backup-server
+    networks:
+      - ziden
+      - default
+    depends_on:
+      - backup-db
+    expose:
+      - ${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    command: npm run start
+  backup-db:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb-backup:/data/db
+    networks:
+      - default
+volumes:
+  mongodb-backup:
+networks:
+  ziden:
+    external: true
+    name: ziden
+  default:
+

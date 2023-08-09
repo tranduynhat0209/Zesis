@@ -1,0 +1,1 @@
+# Zesis - The privacy-preserving identity protocol based on W3C verifiable credentials and Zero-knowledge proof
